@@ -1,0 +1,48 @@
+<.header>
+    Listing Matches
+    <:actions>
+        <.link patch={~p"/admin/matches/new"}>
+            <.button>New Match</.button>
+        </.link>
+    </:actions>
+</.header>
+
+<.table id="matches" rows={@matches}>
+    <:col :let={match} label="Round">
+        <%= match.round %>
+    </:col>
+    <:col :let={match} label="Gender">
+        <%= match.gender %>
+    </:col>
+    <:col :let={match} label="Round Name">
+        <%= match.round_name %>
+    </:col>
+    <:col :let={match} label="Position">
+        <%= match.position %>
+    </:col>
+    <:col :let={match} label="Athlete 1">
+        <%= if match.athlete1, do: match.athlete1.name, else: "Not assigned" %>
+    </:col>
+    <:col :let={match} label="Athlete 2">
+        <%= if match.athlete2, do: match.athlete2.name, else: "Not assigned" %>
+    </:col>
+    <:col :let={match} label="Winner">
+        <%= if match.winner, do: match.winner.name, else: "Not determined" %>
+    </:col>
+    <:action :let={match}>
+        <div class="sr-only">
+            <.link navigate={~p"/admin/matches/#{match}"}>Show</.link>
+        </div>
+        <.link patch={~p"/admin/matches/#{match}/edit"}>Edit</.link>
+    </:action>
+    <:action :let={match}>
+        <.link phx-click={JS.push("delete", value: %{id: match.id})} data-confirm="Are you sure?">
+            Delete
+        </.link>
+    </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="match-modal" show on_cancel={JS.navigate(~p"/admin/matches")}>
+    <.live_component module={TimertimerWeb.MatchLive.FormComponent} id={@match.id || :new} title={@page_title}
+        action={@live_action} match={@match} navigate={~p"/admin/matches"} />
+</.modal>

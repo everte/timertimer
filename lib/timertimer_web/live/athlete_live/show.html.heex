@@ -1,0 +1,31 @@
+<.header>
+  Athlete {@athlete.id}
+  <:subtitle>This is a athlete record from your database.</:subtitle>
+  <:actions>
+    <.link patch={~p"/admin/athletes/#{@athlete}/show/edit"} phx-click={JS.push_focus()}>
+      <.button>Edit athlete</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Name">{@athlete.name}</:item>
+  <:item title="Short name">{@athlete.short_name}</:item>
+  <:item title="Birth date">{@athlete.birth_date}</:item>
+  <:item title="Country">{@athlete.country}</:item>
+  <:item title="Country2">{@athlete.country2}</:item>
+  <:item title="Gender">{@athlete.gender}</:item>
+  <:item title="Notes">{@athlete.notes}</:item>
+
+  <:item :if={@athlete.picture_data} title="Profile picture">
+    <img src={"data:image/png;base64,#{Base.encode64(@athlete.picture_data)}"} class="max-w-xs rounded-md shadow-md"
+      alt={@athlete.name} />
+  </:item>
+</.list>
+
+<.back navigate={~p"/admin/athletes"}>Back to athletes</.back>
+
+<.modal :if={@live_action==:edit} id="athlete-modal" show on_cancel={JS.patch(~p"/admin/athletes/#{@athlete}")}>
+  <.live_component module={TimertimerWeb.AthleteLive.FormComponent} id={@athlete.id} title={@page_title}
+    action={@live_action} athlete={@athlete} patch={~p"/admin/athletes/#{@athlete}"} />
+</.modal>

@@ -1,0 +1,141 @@
+@layer base {
+    @font-face {
+        font-family: 'Qanelas Regular';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Regular'), url('/fonts/QanelasRegular.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Regular Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Regular Italic'), url('/fonts/QanelasRegularItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Thin';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Thin'), url('/fonts/QanelasThin.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas UltraLight';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas UltraLight'), url('/fonts/QanelasUltraLight.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Thin Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Thin Italic'), url('/fonts/QanelasThinItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas UltraLight Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas UltraLight Italic'), url('/fonts/QanelasUltraLightItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Light';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Light'), url('/fonts/QanelasLight.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Light Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Light Italic'), url('/fonts/QanelasLightItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Medium';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Medium'), url('/fonts/QanelasMedium.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Medium Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Medium Italic'), url('/fonts/QanelasMediumItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas SemiBold';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas SemiBold'), url('/fonts/QanelasSemiBold.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas SemiBold Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas SemiBold Italic'), url('/fonts/QanelasSemiBoldItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Bold';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Bold'), url('/fonts/QanelasBold.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Bold Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Bold Italic'), url('/fonts/QanelasBoldItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas ExtraBold';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas ExtraBold'), url('/fonts/QanelasExtraBold.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas ExtraBold Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas ExtraBold Italic'), url('/fonts/QanelasExtraBoldItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Black';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Black'), url('/fonts/QanelasBlack.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Heavy';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Heavy'), url('/fonts/QanelasHeavy.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Black Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Black Italic'), url('/fonts/QanelasBlackItalic.woff') format('woff');
+    }
+
+    @font-face {
+        font-family: 'Qanelas Heavy Italic';
+        font-style: normal;
+        font-weight: normal;
+        src: local('Qanelas Heavy Italic'), url('/fonts/QanelasHeavyItalic.woff') format('woff');
+    }
+}

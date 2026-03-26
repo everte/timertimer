@@ -1,0 +1,58 @@
+{
+    "name": "BeSlack",
+    "font": {
+        "family": "Qanelas"
+    },
+    "h1": {
+        "colour": "#1D4560",
+        "size": "s3xl",
+        "font": "Qanelas ExtraBold",
+        "leading": "unset",
+        "bold": false,
+        "italic": false,
+        "underline": false
+    },
+    "h2": {
+        "colour": "#1D4560",
+        "size": "s3xl",
+        "font": "Qanelas Light"
+    },
+    "h3": {
+        "colour": "#333",
+        "size": "ssm"
+    },
+    "background": {
+        "colour": "#ffffff",
+        "gradient": "false",
+        "degrees": "0",
+        "colour2": "#ffffff",
+        "paddingX": "s3",
+        "paddingY": "s1",
+        "width": "auto",
+        "height": "auto",
+        "rounding": "snone",
+        "glowBlur": "0"
+    },
+    "border": {
+        "enabled": false,
+        "sides": "0000",
+        "size": "0",
+        "style": "solid",
+        "colour": "#C32030"
+    },
+    "position": {
+        "x": "center",
+        "y": "center",
+        "marginX": "s10",
+        "marginY": "s7",
+        "textAlign": "left"
+    },
+    "transition": {
+        "type": "slide",
+        "duration": "1000",
+        "ease": "in-out"
+    },
+    "overrides": {
+        "css": "@import url(\"http://servert.be:4000/fonts/h2r.css\");\n.large_text, .small_text {text-transform: uppercase;}\n"
+    }
+}

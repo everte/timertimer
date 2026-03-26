@@ -1,0 +1,196 @@
+<.flash_group flash={@flash} />
+<h1 class="text-3xl font-bold mb-8 text-center text-gray-800 py-8">Timertimer Navigation</h1>
+
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4 pb-2 text-gray-700">Admin Pages</h2>
+  <ul class="space-y-1 list-disc list-inside text-gray-600">
+    <li>
+      <a href={~p"/admin/timer"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Admin Timer
+      </a>
+    </li>
+    <li>
+      <a href={~p"/admin/athletes"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Manage Athletes
+      </a>
+    </li>
+    <li>
+      <a href={~p"/admin/times"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Manage Times
+      </a>
+    </li>
+    <li>
+      <a href={~p"/admin/matches"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Manage Matches
+      </a>
+    </li>
+  </ul>
+</div>
+
+<div class="bg-white p-6 rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-4  pb-2 text-gray-700">Streaming Pages</h2>
+  <ul class="space-y-1 list-disc list-inside text-gray-600">
+    <li>
+      <a href={~p"/embed/stream/timer"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Stream: Timer
+      </a>
+    </li>
+    <li>
+      <a href={~p"/embed/stream/brackets/male"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Stream: Brackets Male
+      </a>
+    </li>
+    <li>
+      <a href={~p"/embed/stream/brackets/female"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Stream: Brackets Female
+      </a>
+    </li>
+    <li>
+      <a href={~p"/embed/stream/rankings/qualification/male"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Stream: Qualification Rankings Male (1-8)
+      </a>
+    </li>
+    <li>
+      <a href={~p"/embed/stream/rankings/qualification/male?rows=9-16"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Stream: Qualification Rankings Male (9-16)
+      </a>
+    </li>
+    <li>
+      <a href={~p"/embed/stream/rankings/qualification/female?rows=1-9"} target="_blank" rel="noopener noreferrer"
+        class="text-blue-600 hover:text-blue-800 hover:underline">
+        Stream: Qualification Rankings Female (1-9)
+      </a>
+    </li>
+  </ul>
+
+
+  <h2 class="text-xl font-semibold mt-4 pt-2 mb-2 text-gray-700 border-t">Athlete Links</h2>
+  <%= if Enum.empty?(@athletes) do %>
+    <p class="text-gray-500 italic">No athletes found.</p>
+    <% else %>
+      <div class="shadow border-b border-gray-200 sm:rounded-lg overflow-x-auto">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Athlete Name
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                SVO (Name Only)
+              </th>
+              <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                SVO (Name and picture)
+              </th>
+            </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+            <%= for athlete <- @athletes do %>
+              <tr class="hover:bg-gray-50">
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  <%= athlete.name %> (<%= athlete.short_name %>)
+                </td>
+
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <button type="button"
+                    class="ml-2 px-2 py-1 border border-transparent text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    data-url={"#{athlete.url_name}"} onclick="copyToClipboard(this.dataset.url, this)">
+                    Copy
+                  </button>
+                  <a href={~p"/embed/stream/svo/#{athlete.short_name}/name"} target="_blank" rel="noopener noreferrer"
+                    class="text-blue-600 hover:text-blue-800 hover:underline">
+                    Link
+                  </a>
+                  <span class="ml-2 text-xs text-gray-400 font-mono" aria-hidden="true">
+                    <%= ~p"/embed/stream/svo/#{athlete.short_name}/name" %>
+                  </span>
+
+                </td>
+
+                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <button type="button"
+                    class="ml-2 px-2 py-1 border border-transparent text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                    data-url={"#{athlete.url_picture}"} onclick="copyToClipboard(this.dataset.url, this)">
+                    Copy
+                  </button>
+                  <a href={~p"/embed/stream/svo/#{athlete.short_name}/picture"} target="_blank"
+                    rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline">
+                    Link
+                  </a>
+                  <span class="ml-2 text-xs text-gray-400 font-mono" aria-hidden="true">
+                    <%= ~p"/embed/stream/svo/#{athlete.short_name}/picture" %>
+                  </span>
+                </td>
+              </tr>
+              <% end %>
+          </tbody>
+        </table>
+      </div>
+      <% end %>
+
+        <h2 class="text-xl font-semibold mt-4 pt-2 mb-2 text-gray-700 border-t">Match vs Links</h2>
+        <%= if Enum.empty?(@matches) do %>
+          <p class="text-gray-500 italic">No matches found</p>
+          <% else %>
+            <div class="shadow border-b border-gray-200 sm:rounded-lg overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Match Name
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      Gender
+                    </th>
+                    <th scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                      VS page link
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <%= for match <- @matches do %>
+                    <tr class="hover:bg-gray-50">
+                      <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        <%= match.round_name %> (<%= match.round %>)
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <span class="ml-2 text-xs text-gray-400 font-mono" aria-hidden="true">
+                          <%= match.gender %>
+                        </span>
+                      </td>
+
+                      <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                        <button type="button"
+                          class="ml-2 px-2 py-1 border border-transparent text-xs font-medium rounded text-blue-700 bg-blue-100 hover:bg-blue-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+                          data-url={"#{match.url}"} onclick="copyToClipboard(this.dataset.url, this)">
+                          Copy
+                        </button>
+                        <a href={~p"/embed/stream/vs/#{match.round_name}/#{match.gender}"} target="_blank"
+                          rel="noopener noreferrer" class="text-blue-600 hover:text-blue-800 hover:underline">
+                          Link
+                        </a>
+                        <span class="ml-2 text-xs text-gray-400 font-mono" aria-hidden="true">
+                          <%= ~p"/embed/stream/vs/#{match.round_name}/#{match.gender}" %>
+                        </span>
+                      </td>
+                    </tr>
+                    <% end %>
+                </tbody>
+              </table>
+            </div>
+            <% end %>
+
+</div>

@@ -1,0 +1,55 @@
+<.header>
+  Listing Athletes
+  <:actions>
+    <.link patch={~p"/admin/athletes/new"}>
+      <.button>New Athlete</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="athletes" rows={@streams.athletes} row_click={fn {_id, athlete} ->
+  JS.navigate(~p"/admin/athletes/#{athlete}") end}
+  >
+  <:col :let={{_id, athlete}} label="Picture">
+    <div class="flex justify-center">
+      <%= if athlete.picture_data do %>
+        <img src={"data:image/png;base64,#{Base.encode64(athlete.picture_data)}"}
+          class="w-12 h-12 object-cover rounded-full border border-gray-200" alt={athlete.name}
+          style="max-height: 48px;" />
+        <% else %>
+          <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-400">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+              stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+          </div>
+          <% end %>
+    </div>
+  </:col>
+  <:col :let={{_id, athlete}} label="Name">{athlete.name}</:col>
+  <:col :let={{_id, athlete}} label="Short name">{athlete.short_name}</:col>
+  <:col :let={{_id, athlete}} label="Birth date">{athlete.birth_date}</:col>
+  <:col :let={{_id, athlete}} label="Country">{athlete.country}</:col>
+  <:col :let={{_id, athlete}} label="Country2">{athlete.country2}</:col>
+  <:col :let={{_id, athlete}} label="Gender">{athlete.gender}</:col>
+  <:col :let={{_id, athlete}} label="Notes">{athlete.notes}</:col>
+  <:action :let={{_id, athlete}}>
+    <div class="sr-only">
+      <.link navigate={~p"/admin/athletes/#{athlete}"}>Show</.link>
+    </div>
+    <.link patch={~p"/admin/athletes/#{athlete}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={{id, athlete}}>
+    <.link phx-click={JS.push("delete", value: %{id: athlete.id}) |> hide("##{id}")}
+      data-confirm="Are you sure?"
+      >
+      Delete
+    </.link>
+  </:action>
+</.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="athlete-modal" show on_cancel={JS.patch(~p"/admin/athletes")}>
+  <.live_component module={TimertimerWeb.AthleteLive.FormComponent} id={@athlete.id || :new} title={@page_title}
+    action={@live_action} athlete={@athlete} patch={~p"/admin/athletes"} />
+</.modal>

@@ -1,0 +1,33 @@
+<div class="tv">
+    <div class="pt-8 text-center">
+        <div id="countdown-container" phx-hook="CountdownHook">
+            <%= if @countdown_message do %>
+                <h2 class="text-xl font-semibold text-white">{@countdown_message}</h2>
+                <% end %>
+        </div>
+        <audio id="countdown-audio" preload="auto"></audio>
+    </div>
+
+    <div id="svg-container" phx-update="ignore" class="hidden absolute bottom-20 left-1/2 transform -translate-x-1/2">
+        <svg width="200" height="100" viewBox="0 0 200 100">
+            <circle id="circle-1" cx="50" cy="50" r="20" stroke="white" stroke-width="3" fill="red" />
+            <circle id="circle-2" cx="150" cy="50" r="20" stroke="white" stroke-width="3" fill="red" />
+        </svg>
+    </div>
+    <div class="absolute bottom-28 left-28 flex flex-col items-start gap-y-4">
+        <.player
+            name={@left_athlete.name}
+            elapsed={@left.elapsed}
+            countries={[@left_athlete.country, @left_athlete.country2]}
+            align="items-start"
+        />
+    </div>
+    <div class="absolute bottom-28 right-28 flex flex-col items-end gap-y-4">
+        <.player
+            name={@right_athlete.name}
+            elapsed={@right.elapsed}
+            countries={[@right_athlete.country, @right_athlete.country2]}
+            align="items-end"
+        />
+    </div>
+</div>

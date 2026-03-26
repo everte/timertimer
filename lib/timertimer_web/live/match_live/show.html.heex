@@ -1,0 +1,37 @@
+<.header>
+    Match <%= @match.id %>
+        <:subtitle>This is a match record from your database.</:subtitle>
+        <:actions>
+            <.link patch={~p"/admin/matches/#{@match}/edit"} phx-click={JS.push_focus()}>
+                <.button>Edit match</.button>
+            </.link>
+        </:actions>
+</.header>
+
+<.list>
+    <:item title="Round">
+        <%= @match.round %>
+    </:item>
+    <:item title="Round Name">
+        <%= @match.round_name %>
+    </:item>
+    <:item title="Position">
+        <%= @match.position %>
+    </:item>
+    <:item title="Athlete 1">
+        <%= if @match.athlete1, do: @match.athlete1.name, else: "Not assigned" %>
+    </:item>
+    <:item title="Athlete 2">
+        <%= if @match.athlete2, do: @match.athlete2.name, else: "Not assigned" %>
+    </:item>
+    <:item title="Winner">
+        <%= if @match.winner, do: @match.winner.name, else: "Not determined" %>
+    </:item>
+</.list>
+
+<.back navigate={~p"/admin/matches"}>Back to matches</.back>
+
+<.modal :if={@live_action==:edit} id="match-modal" show on_cancel={JS.patch(~p"/admin/matches/#{@match}")}>
+    <.live_component module={TimertimerWeb.MatchLive.FormComponent} id={@match.id} title={@page_title}
+        action={@live_action} match={@match} navigate={~p"/admin/matches/#{@match}"} />
+</.modal>

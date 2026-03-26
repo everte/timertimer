@@ -1,0 +1,61 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import url('font_faces.css');
+
+@layer utilities {
+    .text-outline-black {    
+        -webkit-text-stroke: 2px black;
+    }
+    .text-outline-white {
+        -webkit-text-stroke: 2px white;
+    }
+    .scaleToFit {
+        transform: scale(var(--resize-scale));
+        transform-origin: left top;
+    }
+}
+
+@layer base {
+
+    .tv {
+        @apply w-[1920px] min-h-[1080px] scaleToFit;
+        @apply font-tvSemiBold text-4xl text-tvBlue-dark uppercase;
+    }
+
+    .tv h1 {
+        @apply font-tvBlack text-8xl text-white text-outline-black text-center;
+    }
+
+    .tv h3 {
+        @apply font-tvBlack text-6xl text-white text-outline-black;
+    }
+
+    .tv .label-time {
+        @apply tabular-nums font-tvRegular;
+    }
+    .tv .label-time-em {
+        @apply tabular-nums font-tvBold;
+    }
+    .tv .label-firstName {
+        @apply font-tvExtraBold uppercase;
+    }
+    .tv .label-lastName {
+        @apply font-tvRegular uppercase;
+    }
+
+    .tv .timerName-big {
+        @apply text-5xl;
+    }
+    .tv .timerTime-big {
+        @apply text-6xl;
+    }
+
+
+
+    .tvTable {
+        @apply bg-white table-fixed border-separate border-spacing-x-8 border-spacing-y-4 items-center;
+    }
+
+
+}

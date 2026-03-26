@@ -1,0 +1,39 @@
+<.header>
+  <:actions>
+    <.link patch={~p"/admin/times/new"}>
+      <.button>New Time</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.filter_form fields={[athlete_name: [op: :like_and], round: [op: :like_and]]} meta={@meta} id="user-filter-form" />
+
+
+<Flop.Phoenix.table items={@streams.times} meta={@meta} path={~p"/admin/times"}>
+  <:col :let={{_, time}} label="start_time" field={:start_time}>{format_datetime(time.start_time)}</:col>
+  <:col :let={{_, time}} label="time" field={:time}>{Timertimer.Timer.format_ms(time.time)}</:col>
+  <:col :let={{_, time}} label="round" field={:round}>{time.round}</:col>
+  <:col :let={{_, time}} label="name" field={:athlete_name}>{time.athlete.name}</:col>
+
+  <:action :let={{_, time}}>
+    <div class="sr-only">
+      <.link navigate={~p"/admin/times/#{time}"}>Show</.link>
+    </div>
+    <div class="font-semibold leading-6 text-zinc-900 hover:text-zinc-700">
+      <.link patch={~p"/admin/times/#{time}/edit"}>Edit</.link>
+    </div>
+  </:action>
+  <:action :let={{_, time}}>
+    <div class="font-semibold text-zinc-900 hover:text-zinc-700">
+      <.link phx-click={JS.push("delete", value: %{id: time.id})} data-confirm="Are you sure?">
+        Delete
+      </.link>
+    </div>
+  </:action>
+
+</Flop.Phoenix.table>
+
+<.modal :if={@live_action in [:new, :edit]} id="time-modal" show on_cancel={JS.patch(~p"/admin/times")}>
+  <.live_component module={TimertimerWeb.TimeLive.FormComponent} id={@time.id || :new} title={@page_title}
+    action={@live_action} athletes={@athletes} time={@time} patch={~p"/admin/times"} />
+</.modal>

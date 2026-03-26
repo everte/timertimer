@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" class="">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="csrf-token" content={get_csrf_token()} />
+  <.live_title default="Timertimer" suffix=" · Phoenix Framework">
+    {assigns[:page_title]}
+  </.live_title>
+
+  <script src="/js/vendor/Controller.js"></script>
+  <script src="/js/vendor/Controller.layouts.min.js"></script>
+  <script src="/js/vendor/BuzzController.js"></script>
+
+  <link phx-track-static rel="stylesheet" href={~p"/assets/app.css"} />
+  <script defer phx-track-static type="text/javascript" src={~p"/assets/app.js"}>
+  </script>
+  <style>
+    div.tv { background-color: <%= Map.get(@conn.params, "bg", "transparent") %>}; }
+  </style>
+</head>
+
+<body class="">
+  {@inner_content}
+</body>
+
+</html>
